@@ -5,41 +5,14 @@ var sliderContainer = document.getElementsByClassName("banner pb-1");
 sliderContainer = sliderContainer[0];
 
 //
-var imagesArray = sliderContainer.getElementsByTagName("img");
+var sliderElementsArray = sliderContainer.children;
 
 //
-var imagesArrayLength = imagesArray.length;
-
-// images
-imagesArray = [...imagesArray];
-
-// clean
-sliderContainer.innerHTML = "";
+sliderElementsArray = [...sliderElementsArray];
 
 //
-var imagesSrcArray = [];
+var sliderElementsArrayLength = sliderElementsArray.length;
 
-//
-imagesArray.forEach(x => {
-    imagesSrcArray.push(x.src);
-});
-
-//
-var sliderElementsArray = [];
-
-//
-function creatSliderElement(imgSrc){
-    var element = document.createElement("div");
-    element.setAttribute("class", "slider-item");
-    element.style.backgroundImage = `url(${imgSrc})`;
-    sliderElementsArray.push(element);
-    sliderContainer.appendChild(element);
-}
-
-//appendChild
-for(var i = 0; i < imagesArrayLength; i++){
-    creatSliderElement(imagesSrcArray[i]);
-}
 
 // show first element
 sliderElementsArray[0].classList.add('active');
@@ -47,33 +20,102 @@ sliderElementsArray[0].classList.add('active');
 var i = 0;
 
 //
-function slideIn(){
+function slideIn(callback){
     if(sliderElementsArray[i].classList.contains('active')){
         //
         sliderElementsArray[i].classList.remove('active');
-        
-        //
-        console.log(i, 'before');
+
+        console.log(sliderElementsArray[i], i, 'before');
 
        	//
-        i < (imagesArrayLength - 1) ? i = i + 1 : i = 0;
+        callback();
         
-        console.log(i, 'after');
-        
+        console.log(sliderElementsArray[i], i, 'after');
+
         //
      	sliderElementsArray[i].classList.add('active');
     }
 }
 
 //
-var interval;
+var extension = 1;
 
 //
-function autoPlay(){
+var sliderMoveExtension = function(){
+    if(extension){
+        return i < (sliderElementsArrayLength - 1) ? i = i + 1 : i = 0;
+    } else {
+        return i > 0 ? i = i - 1 : i = sliderElementsArrayLength - 1;
+    }
+}
+
+//
+var interval, 
+    sliderInTimeOut,
+    countTime = 5000;
+
+//
+function topTeamSliderAutoPlay(){
+    //
+    extension = 1;
+
     interval = setInterval(()=>{
-        slideIn();
-    }, 5000)
+        slideIn(sliderMoveExtension);
+    }, countTime);
 };
 
+// call topTeamSliderAutoPlay
+topTeamSliderAutoPlay();
+
 //
-autoPlay();
+function pauseSlider() {
+    clearInterval(interval);
+}
+
+//
+function createButtons(essence){
+    var elem = document.createElement("button");
+        elem.setAttribute("class", `slider-arrow slider-arrow-${essence}`);
+        elem.setAttribute("id", `slider-button-${essence}`);
+        elem.setAttribute("type", "button");
+        sliderContainer.appendChild(elem);
+}
+
+//
+createButtons('left');
+createButtons('right');
+
+var buttonLeft = document.getElementById('slider-button-left');
+
+//
+buttonLeft.addEventListener('click', () => {
+    //
+    pauseSlider();
+    
+    extension = 0;
+    slideIn(sliderMoveExtension);
+
+    // resume;
+    topTeamSliderAutoPlay();
+
+    //
+    console.log('click', buttonLeft, i);
+});
+
+//
+var buttonRight = document.getElementById('slider-button-right');
+
+//
+buttonRight.addEventListener('click', () => {
+    //
+    pauseSlider();
+
+    extension = 1;
+    slideIn(sliderMoveExtension);
+
+    // resume;
+    topTeamSliderAutoPlay();
+
+    //
+    console.log('click', buttonRight, i);
+});

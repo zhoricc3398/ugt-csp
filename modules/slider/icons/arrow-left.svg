@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 48 48">
+  <g id="Group_23" data-name="Group 23" transform="translate(-1096 -413)">
+    <circle id="Ellipse_8" data-name="Ellipse 8" cx="24" cy="24" r="24" transform="translate(1096 413)" fill="#fff" opacity="0.3"/>
+    <g id="Caret_left" data-name="Caret left" transform="translate(1113.135 428)" opacity="0.442">
+      <g id="Caret_left-2" data-name="Caret left" transform="translate(0 0)">
+        <path id="Path" d="M10.21.425a1.45,1.45,0,0,1,0,2.051L3.5,9.185l6.709,6.709a1.45,1.45,0,0,1-2.051,2.051L.425,10.21a1.45,1.45,0,0,1,0-2.051L8.159.425A1.45,1.45,0,0,1,10.21.425Z" transform="translate(0 0)" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+</svg>
