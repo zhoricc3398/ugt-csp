@@ -25,12 +25,12 @@ function slideIn(callback){
         //
         sliderElementsArray[i].classList.remove('active');
 
-        console.log(sliderElementsArray[i], i, 'before');
+        // console.log(sliderElementsArray[i], i, 'before');
 
        	//
         callback();
         
-        console.log(sliderElementsArray[i], i, 'after');
+        // console.log(sliderElementsArray[i], i, 'after');
 
         //
      	sliderElementsArray[i].classList.add('active');
@@ -99,7 +99,7 @@ buttonLeft.addEventListener('click', () => {
     topTeamSliderAutoPlay();
 
     //
-    console.log('click', buttonLeft, i);
+    // console.log('click', buttonLeft, i);
 });
 
 //
@@ -117,5 +117,5 @@ buttonRight.addEventListener('click', () => {
     topTeamSliderAutoPlay();
 
     //
-    console.log('click', buttonRight, i);
+    // console.log('click', buttonRight, i);
 });
