@@ -49,6 +49,10 @@
 	background-image: url(./icons/arrow-right.svg);
 }
 
+.slider-arrow:focus {
+  outline: none;
+}
+
 .slider-arrow:hover {
 	background-image: url(./icons/arrow-right-hovered.svg);
 }
