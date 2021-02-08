@@ -36,7 +36,7 @@
 	border-radius: 50%;
 	top: auto !important;
 	left: auto !important;
-	right: 2%;
+	right: 25px;
 	bottom: 50px;
 	z-index: 50 !important;
 	opacity: 1 !important;
@@ -58,7 +58,7 @@
 }
 
 .slider-arrow-left {
-	right: 6% !important;
+	right: 100px !important;
 	background-image: url(./icons/arrow-left.svg);
 }
 
