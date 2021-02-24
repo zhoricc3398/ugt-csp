@@ -123,6 +123,6 @@ function slider() {
 
 }
 
-if(document.getElementsByClassName("banner pb-1")){
+if(document.getElementsByClassName("banner pb-1").length){
     slider();
 }
