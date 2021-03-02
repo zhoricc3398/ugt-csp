@@ -1,16 +1,45 @@
+.price-details.active .currency-transformer-container::before {
+    background-color: #fff;
+    transform: translateX(calc(100% - 2px));
+}
+
+.price-details.active .currency-transformer-container::after {
+	border-color: #E31E33;
+	background-color: #E31E33;
+}
+
 .currency-transformer-container {
 	position: relative;
 	color: #bcbcbc;
 	font-size: .875rem;
-	border: 1px solid red;
+	cursor: pointer;
+	padding-left: 55.5px;
 }
 
 .currency-transformer-container::after {
 	display: block;
 	content: "";
+	width: 31.5px;
+	height: 18px;
+	position: absolute;
+	left: 0; 
+	top: 0; bottom: 0;
+	margin: auto;
+	border: #bcbcbc solid 1px;
+	border-radius: .5rem;
 }
 
 .currency-transformer-container::before {
 	display: block;
 	content: "";
+	width: 14px;
+	height: 14px;
+	position: absolute;
+	left: 2px;
+	bottom: 0; top: 0;
+	margin: auto;
+	border-radius: 50%;
+	transition: transform .3s ease-in-out;
+	z-index: 5;
+	background-color: #bcbcbc;
 }
