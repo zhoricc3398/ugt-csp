@@ -1,4 +1,16 @@
 .currency-transformer-container {
 	position: relative;
+	color: #bcbcbc;
+	font-size: .875rem;
 	border: 1px solid red;
+}
+
+.currency-transformer-container::after {
+	display: block;
+	content: "";
+}
+
+.currency-transformer-container::before {
+	display: block;
+	content: "";
 }
