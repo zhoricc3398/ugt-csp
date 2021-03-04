@@ -77,15 +77,17 @@ if (cur_wrapper_home || cur_wrapper_catalogue) {
                 elemContainer = document.getElementById('preview-placeholder').getElementsByClassName('currency-transformer-container')[0];
             }
 
+            //
+            if (i === 100) {
+                clearInterval(interval);
+
+            }
+
             elemContainer.onclick = function (e) {
                 cur_event(e);
                 clearInterval(interval);
             }
-
-            if (i === 10) {
-                clearInterval(interval);
-
-            }
+           
         }, 100);
 
     }
