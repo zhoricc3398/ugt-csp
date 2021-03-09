@@ -80,7 +80,6 @@ if (cur_wrapper_home || cur_wrapper_catalogue) {
             //
             if (i === 100) {
                 clearInterval(interval);
-
             }
 
             elemContainer.onclick = function (e) {
