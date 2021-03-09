@@ -6,6 +6,8 @@
   "background_color": "#fdfdfd",
   "theme_color": "#db4938",
   "orientation": "portrait-primary",
+  "scope": "https://zhoricc3398.github.io/ugt-csp/modules/serviceWorker_example/",
+  "prefer_related_applications": true,
   "icons": [
     {
       "src": "https://zhoricc3398.github.io/ugt-csp/modules/serviceWorker_example/images/icons/pwa-192x192.png",
