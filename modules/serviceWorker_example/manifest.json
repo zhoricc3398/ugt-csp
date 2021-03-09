@@ -1,7 +1,7 @@
 {
   "name": "Dev'Coffee",
   "short_name": "DevCoffee",
-  "start_url": "https://zhoricc3398.github.io/ugt-csp/modules/serviceWorker_example/index.html",
+  "start_url": "https://zhoricc3398.github.io/ugt-csp/modules/serviceWorker_example/",
   "display": "standalone",
   "background_color": "#fdfdfd",
   "theme_color": "#db4938",
