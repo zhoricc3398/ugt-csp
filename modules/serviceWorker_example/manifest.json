@@ -9,6 +9,12 @@
   "icons": [
     {
       "src": "https://zhoricc3398.github.io/ugt-csp/modules/serviceWorker_example/images/icons/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://zhoricc3398.github.io/ugt-csp/modules/serviceWorker_example/images/icons/pwa-192x192.png",
       "type": "image/png", "sizes": "192x192"
     },
     {
