@@ -1,12 +1,12 @@
 const staticDevCoffee = "dev-coffee-site-v1"
 const assets = [
   "/",
-  "/index.html",
-  "/css/style.css",
-  "/js/app.js",
-  "/images/coffee1.jpg",
-  "/images/coffee2.jpg",
-  "/images/coffee3.jpg",
+  "https://zhoricc3398.github.io/ugt-csp/modules/serviceWorker_example/index.html",
+  "https://zhoricc3398.github.io/ugt-csp/modules/serviceWorker_example/css/style.css",
+  "https://zhoricc3398.github.io/ugt-csp/modules/serviceWorker_example/js/app.js",
+  "https://zhoricc3398.github.io/ugt-csp/modules/serviceWorker_example/images/coffee1.jpg",
+  "https://zhoricc3398.github.io/ugt-csp/modules/serviceWorker_example/images/coffee2.jpg",
+  "https://zhoricc3398.github.io/ugt-csp/modules/serviceWorker_example/images/coffee3.jpg",
 ]
 
 self.addEventListener("install", installEvent => {
