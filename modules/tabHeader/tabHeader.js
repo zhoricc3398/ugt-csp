@@ -1,4 +1,4 @@
-var tab_headerContainer = document.getElementsByClassName('.fixed-top')[0];
+var tab_headerContainer = document.getElementsByClassName('fixed-top')[0];
 var tab_elemContainer = `
     <div id="ugt-tab-header" class="ugt-tab-header">
         <div class="container">
