@@ -7,6 +7,7 @@ const assets = [
   "https://zhoricc3398.github.io/ugt-csp/modules/serviceWorker_example/images/coffee1.jpg",
   "https://zhoricc3398.github.io/ugt-csp/modules/serviceWorker_example/images/coffee2.jpg",
   "https://zhoricc3398.github.io/ugt-csp/modules/serviceWorker_example/images/coffee3.jpg",
+  "https://zhoricc3398.github.io/ugt-csp/assets/test.epub",
 ]
 
 self.addEventListener("install", installEvent => {
