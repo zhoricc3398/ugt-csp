@@ -4,7 +4,7 @@ var tab_headerPlaceholder = document.createElement('div');
 var tab_elemContainer = `<ul>
                 <li><a href='https://ugt.ge/en/home'>ugt</a></li>
                 <li><a href='https://ugtcloud.ge/en'>services</a></li>
-                <li class="active"><a href='https://cloud.ugt.ge/'>online shopping</a></li>
+                <li class="active"><a href='https://cloud.ugt.ge/'>online shop</a></li>
             </ul>`;
 tab_headerPlaceholder.innerHTML = tab_elemContainer;
 tab_headerContainer.appendChild(tab_headerPlaceholder);
