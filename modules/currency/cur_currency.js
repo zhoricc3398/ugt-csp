@@ -11,7 +11,11 @@ if (cur_wrapper_home || cur_wrapper_catalogue) {
         
         //
         if (isLoggedIn()) {
-            innerTextContainer = [...innerTextContainer][1].replace('$',' ');
+            //
+            console.log(innerTextContainer, event.target.parentElement);
+
+            //
+            innerTextContainer = [...innerTextContainer][1].toString().replace('$',' ');
         } else {
             innerTextContainer = [...innerTextContainer][1];
         }
