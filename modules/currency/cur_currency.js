@@ -12,7 +12,7 @@ if (cur_wrapper_home || cur_wrapper_catalogue) {
         //
         if (isLoggedIn()) {
             //
-            console.log(innerTextContainer, event.target.parentElement);
+            console.log(innerTextContainer, [...innerTextContainer][1], event.target.parentElement);
 
             //
             innerTextContainer = [...innerTextContainer][1].toString().replace('$',' ');
