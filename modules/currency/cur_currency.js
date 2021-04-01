@@ -1,3 +1,4 @@
+const GEL_TO_USD = 0.29;
 var cur_wrapper_home = document.getElementById('home');
 var cur_wrapper_catalogue = document.getElementById('catalogue');
 
@@ -11,6 +12,11 @@ if (cur_wrapper_home || cur_wrapper_catalogue) {
         innerTextContainer = [...innerTextContainer][1];
 
         //
+        if (isLoggedIn()) {
+            console.log(innerTextContainer);
+        }
+
+        //
         var subLenght, cur_gel = cur_format(innerTextContainer.innerText);
 
         //
@@ -18,7 +24,7 @@ if (cur_wrapper_home || cur_wrapper_catalogue) {
 
         //
         if (!hasContainerActiveState(event.target.parentElement)) {
-            innerTextContainer.innerText = `${cur_gel_to_usd(innerTextContainer.innerText).toString().substring(0, subLenght)} $`;
+            innerTextContainer.innerText = `$${cur_gel_to_usd(innerTextContainer.innerText).toString().substring(0, subLenght)}`;
         } else {
             innerTextContainer.innerText = `${event.target.parentElement.getAttribute('gel-currency')} ₾`;
         }
@@ -98,6 +104,10 @@ if (cur_wrapper_home || cur_wrapper_catalogue) {
 
     function cur_gel_to_usd(cur_gel) {
         return cur_format(cur_gel) / USD_TO_GEL;
+    }
+
+    function cur_usd_to_gel(cur_usd) {
+        return cur_format(cur_usd) * USD_TO_GEL;
     }
 
     function hasContainerActiveState(elem) {
