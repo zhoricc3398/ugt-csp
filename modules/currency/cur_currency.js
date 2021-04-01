@@ -1,4 +1,3 @@
-const GEL_TO_USD = 0.29;
 var cur_wrapper_home = document.getElementById('home');
 var cur_wrapper_catalogue = document.getElementById('catalogue');
 
@@ -13,7 +12,7 @@ if (cur_wrapper_home || cur_wrapper_catalogue) {
 
         //
         if (isLoggedIn()) {
-            console.log(innerTextContainer);
+            console.log(innerTextContainer, event);
         }
 
         //
@@ -106,9 +105,9 @@ if (cur_wrapper_home || cur_wrapper_catalogue) {
         return cur_format(cur_gel) / USD_TO_GEL;
     }
 
-    function cur_usd_to_gel(cur_usd) {
-        return cur_format(cur_usd) * USD_TO_GEL;
-    }
+    // function cur_usd_to_gel(cur_gel) {
+    //     return cur_format(cur_gel) * USD_TO_GEL;
+    // }
 
     function hasContainerActiveState(elem) {
         return elem.classList.contains('active')
