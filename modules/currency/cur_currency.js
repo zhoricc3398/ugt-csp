@@ -1,6 +1,15 @@
 var cur_wrapper_home = document.getElementById('home');
 var cur_wrapper_catalogue = document.getElementById('catalogue');
 
+//
+var innerTextContainer = document.getElementsByClassName('price')[0].getElementsByTagName('div')[0].getElementsByTagName('span');
+innerTextContainer = [...innerTextContainer][1];
+
+//
+if (isLoggedIn()) {
+    console.log(innerTextContainer);
+}
+
 if (cur_wrapper_home || cur_wrapper_catalogue) {
     var cur_container = document.getElementsByClassName('price-details');
     cur_container = [...cur_container];
@@ -11,9 +20,9 @@ if (cur_wrapper_home || cur_wrapper_catalogue) {
         innerTextContainer = [...innerTextContainer][1];
 
         //
-        if (isLoggedIn()) {
-            console.log(innerTextContainer, event);
-        }
+        // if (isLoggedIn()) {
+        //     console.log(innerTextContainer, event);
+        // }
 
         //
         var subLenght, cur_gel = cur_format(innerTextContainer.innerText);
