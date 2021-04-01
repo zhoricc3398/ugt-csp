@@ -8,7 +8,7 @@ if (cur_wrapper_home || cur_wrapper_catalogue) {
     function cur_event(event) {
         //
         var innerTextContainer = event.target.parentElement.getElementsByClassName('price')[0].getElementsByTagName('div')[0].getElementsByTagName('span');
-        innerTextContainer = [...innerTextContainer][1];
+        // innerTextContainer = [...innerTextContainer][1];
         
         //
         if (isLoggedIn()) {
