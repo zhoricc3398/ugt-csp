@@ -13,9 +13,9 @@ if (cur_wrapper_home || cur_wrapper_catalogue) {
         //
         if (isLoggedIn()) {
             //
-            console.log(innerTextContainer, [...innerTextContainer][1], event.target.parentElement);
         }
-
+        console.log(innerTextContainer, [...innerTextContainer][1], event.target.parentElement);
+        
         //
         var subLenght, cur_gel = cur_format(innerTextContainer.innerText);
 
