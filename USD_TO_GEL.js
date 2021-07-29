@@ -1,1 +1,2 @@
-const USD_TO_GEL = 3.15;
+const USD_TO_GEL = 3.1052
+
