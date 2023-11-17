@@ -1,2 +1,2 @@
-const USD_TO_GEL = 3.1052
+const USD_TO_GEL = 2.8
 
