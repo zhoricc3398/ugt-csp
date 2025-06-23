@@ -6,7 +6,7 @@ if (cur_wrapper_home || cur_wrapper_catalogue) {
   cur_container = [...cur_container];
 
   function cur_event(event) {
-    const container = event.target.parentElement;
+    const container = event.target.closest(".price-details");
     const priceElem = container
       .getElementsByClassName("price")[0]
       ?.getElementsByTagName("div")[0]
@@ -15,38 +15,25 @@ if (cur_wrapper_home || cur_wrapper_catalogue) {
     if (!priceElem) return;
 
     const rawText = priceElem.innerText.trim();
-    const isUSD = rawText.includes("$");
-    const isGEL = rawText.includes("₾");
     const rate = USD_TO_GEL;
+    const isActive = container.classList.contains("active");
 
-    if (!isUSD && !isGEL) return;
-
-    if (isUSD) {
-      const usd = cur_format(rawText);
-      const gel = usd * rate;
-      const formatted = `${gel.toFixed(2)} ₾`;
-
-      if (!hasContainerActiveState(container)) {
-        priceElem.innerText = formatted;
-      } else {
-        priceElem.innerText = `$${usd.toFixed(2)}`;
-      }
-
-      cur_addAttr(container, gel.toFixed(2));
-    }
-
-    if (isGEL) {
+    if (isActive) {
+      // ლარი → დოლარი
       const gel = cur_format(rawText);
       const usd = gel / rate;
-      const formatted = `$${usd.toFixed(2)}`;
+      priceElem.innerText = `$${usd.toFixed(2)}`;
+      container.classList.remove("active");
+    } else {
+      // დოლარი → ლარი
+      const usd = cur_format(rawText);
+      const gel = usd * rate;
+      priceElem.innerText = `${gel.toFixed(2)} ₾`;
+      container.classList.add("active");
+    }
 
-      if (!hasContainerActiveState(container)) {
-        priceElem.innerText = formatted;
-      } else {
-        priceElem.innerText = `${gel.toFixed(2)} ₾`;
-      }
-
-      cur_addAttr(container, gel.toFixed(2));
+    if (!container.hasAttribute("gel-currency")) {
+      container.setAttribute("gel-currency", (cur_format(rawText) * rate).toFixed(2));
     }
   }
 
@@ -109,21 +96,6 @@ if (cur_wrapper_home || cur_wrapper_catalogue) {
     let numericPart = value.replace(/[^\d.,]/g, "").replace(",", ".");
     let num = Number(numericPart);
     return isNaN(num) ? 0 : num;
-  }
-
-  function hasContainerActiveState(elem) {
-    return elem.classList.contains("active");
-  }
-
-  function hasContainerCurrencyState(elem) {
-    return elem.hasAttribute("gel-currency");
-  }
-
-  function cur_addAttr(elem, gel_currency) {
-    elem.classList.toggle("active");
-    if (!hasContainerCurrencyState(elem)) {
-      elem.setAttribute("gel-currency", gel_currency);
-    }
   }
 
   if (cur_wrapper_home) {
