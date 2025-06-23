@@ -152,6 +152,7 @@ if (cur_wrapper_home || cur_wrapper_catalogue) {
   }
 
   function cur_format(value) {
+    console.log(value);
     let replaceForTransform = value.split(" ")[0].replace(",", ".");
     return Number(replaceForTransform);
   }
