@@ -1,6 +1,9 @@
 var cur_wrapper_home = document.getElementById("home");
 var cur_wrapper_catalogue = document.getElementById("catalogue");
 
+
+console.log("v=1");
+
 if (cur_wrapper_home || cur_wrapper_catalogue) {
   function cur_event(event) {
     const container = event.target.closest(".price-details");
