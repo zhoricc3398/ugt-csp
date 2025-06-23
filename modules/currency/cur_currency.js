@@ -17,7 +17,7 @@ if (cur_wrapper_home || cur_wrapper_catalogue) {
     const rawText = priceElem.innerText.trim();
     const isUSD = rawText.includes("$");
     const isGEL = rawText.includes("₾");
-    const rate = getUsdToGelRate();
+    const rate = USD_TO_GEL;
 
     if (!isUSD && !isGEL) return;
 
