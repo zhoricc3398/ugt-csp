@@ -4,6 +4,8 @@ var cur_wrapper_catalogue = document.getElementById("catalogue");
 if (cur_wrapper_home || cur_wrapper_catalogue) {
   function cur_event(event) {
     const container = event.target.closest(".price-details");
+    if (!container) return;
+
     const priceElem = container
       .getElementsByClassName("price")[0]
       ?.getElementsByTagName("div")[0]
@@ -13,19 +15,24 @@ if (cur_wrapper_home || cur_wrapper_catalogue) {
 
     const rawText = priceElem.innerText.trim();
     const rate = USD_TO_GEL;
-    const isActive = container.classList.contains("active");
 
-    if (isActive) {
-      const gel = cur_format(rawText);
-      const usd = gel / rate;
-      priceElem.innerText = `$${usd.toFixed(2)}`;
+    const isLari = rawText.includes("₾");
+    const isUsd = rawText.includes("$");
+
+    const current = cur_format(rawText);
+    let newValue = "";
+
+    if (isLari) {
+      newValue = `$${(current / rate).toFixed(2)}`;
       container.classList.remove("active");
-    } else {
-      const usd = cur_format(rawText);
-      const gel = usd * rate;
-      priceElem.innerText = `${gel.toFixed(2)} ₾`;
+    } else if (isUsd) {
+      newValue = `${(current * rate).toFixed(2)} ₾`;
       container.classList.add("active");
+    } else {
+      return; // ვალუტის სიმბოლო ვერ მოიძებნა
     }
+
+    priceElem.innerText = newValue;
 
     if (!container.hasAttribute("gel-currency")) {
       container.setAttribute("gel-currency", (cur_format(rawText) * rate).toFixed(2));
@@ -65,7 +72,7 @@ if (cur_wrapper_home || cur_wrapper_catalogue) {
     var interval = setInterval(() => {
       i++;
 
-      cur_bind_preview_button(); // ყოველი ცდაზე ცადა მიაბას
+      cur_bind_preview_button();
 
       const container = document.getElementById("product-preview-selected-pricedetails");
       if (container?.classList.contains("currency-loaded") || i === 100) {
