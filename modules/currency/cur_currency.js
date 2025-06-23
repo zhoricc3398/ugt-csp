@@ -2,9 +2,6 @@ var cur_wrapper_home = document.getElementById("home");
 var cur_wrapper_catalogue = document.getElementById("catalogue");
 
 if (cur_wrapper_home || cur_wrapper_catalogue) {
-  var cur_container = document.getElementsByClassName("price-details");
-  cur_container = [...cur_container];
-
   function cur_event(event) {
     const container = event.target.closest(".price-details");
     const priceElem = container
@@ -19,13 +16,11 @@ if (cur_wrapper_home || cur_wrapper_catalogue) {
     const isActive = container.classList.contains("active");
 
     if (isActive) {
-      // ლარი → დოლარი
       const gel = cur_format(rawText);
       const usd = gel / rate;
       priceElem.innerText = `$${usd.toFixed(2)}`;
       container.classList.remove("active");
     } else {
-      // დოლარი → ლარი
       const usd = cur_format(rawText);
       const gel = usd * rate;
       priceElem.innerText = `${gel.toFixed(2)} ₾`;
@@ -37,30 +32,19 @@ if (cur_wrapper_home || cur_wrapper_catalogue) {
     }
   }
 
-  function cur_append_transformer_button_home() {
-    cur_container.forEach((x) => {
+  function cur_append_transformer_buttons() {
+    const containers = document.querySelectorAll(".price-details");
+
+    containers.forEach((x) => {
+      // უკვე არსებობს ღილაკი? გამოტოვე
+      if (x.querySelector(".currency-transformer-container")) return;
+
       var elem = document.createElement("div");
       elem.setAttribute("class", "currency-transformer-container");
       elem.innerText = isLoggedIn() ? "Georgian Lari" : "United States Dollar";
       elem.onclick = function (e) {
         cur_event(e);
       };
-      x.appendChild(elem);
-    });
-  }
-
-  function cur_append_transformer_button_catalogue() {
-    cur_container.forEach((x) => {
-      var elem = document.createElement("div");
-      elem.setAttribute("class", "currency-transformer-container");
-      elem.innerText = isLoggedIn() ? "Georgian Lari" : "United States Dollar";
-
-      x.offsetParent.getElementsByClassName("product")[0].onclick = function (
-        e
-      ) {
-        cur_restart_event_from_preview();
-      };
-
       x.appendChild(elem);
     });
   }
@@ -74,15 +58,16 @@ if (cur_wrapper_home || cur_wrapper_catalogue) {
       if (window.innerWidth < 992) {
         elemContainer = document
           .getElementsByClassName("modal-body")[0]
-          .getElementsByClassName("currency-transformer-container")[0];
+          ?.getElementsByClassName("currency-transformer-container")[0];
       } else {
         elemContainer = document
           .getElementById("preview-placeholder")
-          .getElementsByClassName("currency-transformer-container")[0];
+          ?.getElementsByClassName("currency-transformer-container")[0];
       }
 
-      if (i === 100) {
+      if (!elemContainer || i === 100) {
         clearInterval(interval);
+        return;
       }
 
       elemContainer.onclick = function (e) {
@@ -98,9 +83,16 @@ if (cur_wrapper_home || cur_wrapper_catalogue) {
     return isNaN(num) ? 0 : num;
   }
 
-  if (cur_wrapper_home) {
-    cur_append_transformer_button_home();
-  } else {
-    cur_append_transformer_button_catalogue();
+  // პირველადი რენდერი
+  cur_append_transformer_buttons();
+
+  // თუ კატალოგში ვართ და "Read More"-ით ემატება პროდუქტები
+  if (cur_wrapper_catalogue) {
+    // დავაკვირდეთ DOM ცვლილებებს
+    const observer = new MutationObserver(() => {
+      cur_append_transformer_buttons();
+    });
+
+    observer.observe(cur_wrapper_catalogue, { childList: true, subtree: true });
   }
 }
