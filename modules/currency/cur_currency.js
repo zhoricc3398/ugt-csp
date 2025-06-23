@@ -36,7 +36,6 @@ if (cur_wrapper_home || cur_wrapper_catalogue) {
     const containers = document.querySelectorAll(".price-details");
 
     containers.forEach((x) => {
-      // უკვე არსებობს ღილაკი? გამოტოვე
       if (x.querySelector(".currency-transformer-container")) return;
 
       var elem = document.createElement("div");
@@ -49,31 +48,31 @@ if (cur_wrapper_home || cur_wrapper_catalogue) {
     });
   }
 
+  function cur_bind_preview_button() {
+    const previewWrapper = document.getElementById("product-preview-selected-pricedetails");
+    if (!previewWrapper) return;
+
+    const btn = previewWrapper.querySelector(".currency-transformer-container");
+    if (!btn) return;
+
+    btn.onclick = function (e) {
+      cur_event(e);
+    };
+  }
+
   function cur_restart_event_from_preview() {
     var i = 0;
     var interval = setInterval(() => {
       i++;
-      var elemContainer;
 
-      if (window.innerWidth < 992) {
-        elemContainer = document
-          .getElementsByClassName("modal-body")[0]
-          ?.getElementsByClassName("currency-transformer-container")[0];
+      cur_bind_preview_button(); // ყოველი ცდაზე ცადა მიაბას
+
+      const container = document.getElementById("product-preview-selected-pricedetails");
+      if (container?.classList.contains("currency-loaded") || i === 100) {
+        clearInterval(interval);
       } else {
-        elemContainer = document
-          .getElementById("preview-placeholder")
-          ?.getElementsByClassName("currency-transformer-container")[0];
+        container?.classList.add("currency-loaded");
       }
-
-      if (!elemContainer || i === 100) {
-        clearInterval(interval);
-        return;
-      }
-
-      elemContainer.onclick = function (e) {
-        cur_event(e);
-        clearInterval(interval);
-      };
     }, 100);
   }
 
@@ -85,10 +84,9 @@ if (cur_wrapper_home || cur_wrapper_catalogue) {
 
   // პირველადი რენდერი
   cur_append_transformer_buttons();
+  cur_bind_preview_button();
 
-  // თუ კატალოგში ვართ და "Read More"-ით ემატება პროდუქტები
   if (cur_wrapper_catalogue) {
-    // დავაკვირდეთ DOM ცვლილებებს
     const observer = new MutationObserver(() => {
       cur_append_transformer_buttons();
     });
