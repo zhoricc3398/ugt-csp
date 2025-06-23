@@ -151,11 +151,21 @@ if (cur_wrapper_home || cur_wrapper_catalogue) {
     }, 100);
   }
 
+  // function cur_format(value) {
+  //   console.log(value);
+  //   let replaceForTransform = value.split(" ")[0].replace(",", ".");
+  //   return Number(replaceForTransform);
+  // }
+
   function cur_format(value) {
-    console.log(value);
-    let replaceForTransform = value.split(" ")[0].replace(",", ".");
-    return Number(replaceForTransform);
+    console.log(value); // ნახე შემომავალი მნიშვნელობა
+    let clean = value.replace("$", "").replace("₾", "").trim(); // ამოიღე ვალუტის სიმბოლო
+    clean = clean.replace(",", "."); // თუ ვინმესთვის მაინც იყენებ , სიმბოლოს
+    let number = Number(clean);
+    console.log("parsed:", number); // პარალელურად ამოწმებ
+    return number;
   }
+
 
   function cur_parser_usd(value) {
     let transformValue = value.replace("$", " ");
